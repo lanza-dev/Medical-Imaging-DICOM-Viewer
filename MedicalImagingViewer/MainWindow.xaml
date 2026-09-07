@@ -1,0 +1,222 @@
+﻿<Window x:Class="MedicalImagingViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Medical Imaging Viewer"
+        Height="750"
+        Width="1000">
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0"
+                Width="150"
+                Height="35"
+                HorizontalAlignment="Left"
+                Content="Open DICOM File"
+                Click="OpenDicomFile_Click"/>
+
+        <Grid Grid.Row="1"
+              Margin="0,20,0,20">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="190"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Patient:" FontWeight="Bold"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="PatientText"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Study UID:" FontWeight="Bold"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" x:Name="StudyUidText"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Series UID:" FontWeight="Bold"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" x:Name="SeriesUidText"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Modality:" FontWeight="Bold"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" x:Name="ModalityText"/>
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Dimensions:" FontWeight="Bold"/>
+            <TextBlock Grid.Row="4" Grid.Column="1" x:Name="DimensionsText"/>
+
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Window Center:" FontWeight="Bold"/>
+            <TextBlock Grid.Row="5" Grid.Column="1" x:Name="WindowCenterText"/>
+
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Window Width:" FontWeight="Bold"/>
+            <TextBlock Grid.Row="6" Grid.Column="1" x:Name="WindowWidthText"/>
+
+            <TextBlock Grid.Row="7" Grid.Column="0"
+           Text="Bits Allocated:" FontWeight="Bold"/>
+            <TextBlock Grid.Row="7" Grid.Column="1"
+           x:Name="BitsAllocatedText"/>
+
+            <TextBlock Grid.Row="8" Grid.Column="0"
+           Text="Bits Stored:" FontWeight="Bold"/>
+            <TextBlock Grid.Row="8" Grid.Column="1"
+           x:Name="BitsStoredText"/>
+
+            <TextBlock Grid.Row="9" Grid.Column="0"
+           Text="High Bit:" FontWeight="Bold"/>
+            <TextBlock Grid.Row="9" Grid.Column="1"
+           x:Name="HighBitText"/>
+
+            <TextBlock Grid.Row="10" Grid.Column="0"
+           Text="Pixel Representation:" FontWeight="Bold"/>
+            <TextBlock Grid.Row="10" Grid.Column="1"
+           x:Name="PixelRepresentationText"/>
+
+            <TextBlock Grid.Row="11" Grid.Column="0"
+           Text="Photometric Interpretation:" FontWeight="Bold"/>
+            <TextBlock Grid.Row="11" Grid.Column="1"
+           x:Name="PhotometricInterpretationText"/>
+
+            <TextBlock Grid.Row="12" Grid.Column="0"
+           Text="Rescale Slope:" FontWeight="Bold"/>
+            <TextBlock Grid.Row="12" Grid.Column="1"
+           x:Name="RescaleSlopeText"/>
+
+            <TextBlock Grid.Row="13" Grid.Column="0"
+           Text="Rescale Intercept:" FontWeight="Bold"/>
+            <TextBlock Grid.Row="13" Grid.Column="1"
+           x:Name="RescaleInterceptText"/>
+
+        </Grid>
+
+        <StackPanel Grid.Row="2"
+            Orientation="Horizontal"
+            Margin="0,0,0,15">
+
+            <TextBlock Text="Window Center:"
+               FontWeight="Bold"
+               VerticalAlignment="Center"/>
+
+            <TextBox x:Name="WindowCenterInput"
+             Width="90"
+             Margin="10,0,20,0"/>
+
+            <TextBlock Text="Window Width:"
+               FontWeight="Bold"
+               VerticalAlignment="Center"/>
+
+            <TextBox x:Name="WindowWidthInput"
+             Width="90"
+             Margin="10,0,20,0"/>
+
+            <Button Content="Apply Window"
+            Width="110"
+            Click="ApplyWindow_Click"/>
+
+        </StackPanel>
+
+        <Grid Grid.Row="3"
+      Margin="0,0,0,15">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- PACS connection settings -->
+            <StackPanel Grid.Row="0"
+                Orientation="Horizontal"
+                Margin="0,0,0,10">
+
+                <TextBlock Text="PACS Host:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"/>
+
+                <TextBox x:Name="PacsHostInput"
+                 Width="110"
+                 Margin="10,0,15,0"
+                 Text="127.0.0.1"/>
+
+                <TextBlock Text="Port:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"/>
+
+                <TextBox x:Name="PacsPortInput"
+                 Width="60"
+                 Margin="10,0,15,0"
+                 Text="4242"/>
+
+                <TextBlock Text="Calling AE:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"/>
+
+                <TextBox x:Name="CallingAeInput"
+                 Width="100"
+                 Margin="10,0,15,0"
+                 Text="MEDVIEWER"/>
+
+                <TextBlock Text="Called AE:"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"/>
+
+                <TextBox x:Name="CalledAeInput"
+                 Width="100"
+                 Margin="10,0,15,0"
+                 Text="ORTHANC"/>
+
+            </StackPanel>
+
+            <!-- DICOM networking operations -->
+            <StackPanel Grid.Row="1"
+                Orientation="Horizontal">
+
+                <Button Content="C-ECHO"
+                Width="100"
+                Margin="0,0,10,0"
+                Click="EchoPacs_Click"/>
+
+                <Button Content="C-FIND Studies"
+                Width="120"
+                Margin="0,0,10,0"
+                Click="FindStudies_Click"/>
+
+                <Button Content="C-STORE"
+                Width="100"
+                Margin="0,0,10,0"
+                Click="StoreDicom_Click"/>
+
+                <Button Content="C-MOVE Study"
+                Width="120"
+                Click="MoveStudy_Click"/>
+
+            </StackPanel>
+
+        </Grid>
+
+        <Border Grid.Row="4"
+                BorderBrush="Gray"
+                BorderThickness="1">
+
+            <Image x:Name="DicomImage"
+                   Stretch="Uniform"/>
+
+        </Border>
+
+    </Grid>
+</Window>
